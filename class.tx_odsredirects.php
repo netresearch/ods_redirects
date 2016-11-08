@@ -177,7 +177,7 @@ class tx_odsredirects {
 			}
 
 			$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
-			$url = $cObj->getTypoLink_URL($id, $L ? array('L'=>$L) : array());
+			$url = $cObj->getTypoLink_URL($id, $L!==false ? array('L'=>$L) : array());
 			return $url;
 		}
 	}
