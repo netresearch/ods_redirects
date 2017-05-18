@@ -26,7 +26,12 @@ class ext_update {
 	protected $messageArray = array();
 
 	public function access() {
-		return true;
+		$realurl_version = TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getExtensionVersion('realurl'));
+		if($realurl_version > 0 && $realurl_version < 2000000) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
