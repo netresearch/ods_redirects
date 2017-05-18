@@ -103,38 +103,9 @@ class tx_odsredirects {
 	}
 
 	function getLink($destination,$source=''){
-		// $destination='test@example.com'; // email
-		// $destination='http://example.com/test.html'; // URL
-		// $destination='example.com'; // URL without http://
-		// $destination='example.com/test.html'; // URL without http://
-		// $destination='/test.html'; // path
-		// $destination='test/test.html'; // path
-		// $destination='123'; // page id
-		// $destination='test'; // alias
-		if(strpos($destination,'@')){
-			// email
-			return 'mailto:'.$destination;
-		}elseif(strpos($destination,'//')){
-			// URL
-			return $destination;
-		}elseif((strpos($destination,'.') && strpos($destination,'/')===false) || (strpos($destination,'.')<strpos($destination,'/'))){
-			// URL without http://
-			return 'http://'.$destination;
-		}elseif(strpos($destination,'/')!==false){
-			// path
-			return $destination;
-		}elseif(is_numeric($destination)){
-			// page id
-			// language detection
-			$L=$this->languageDetection($source);
-			// build URL
-			$url=$this->buildURL($destination,$L);
-			if(!$url) $url='index.php?id='.$destination.($L===false ? '' : '&L='.$L);
-			return $url;
-		}else{
-			// alias
-			return 'index.php?id='.$destination;
-		}
+		$L=$this->languageDetection($source);
+		$url=$this->buildURL($destination,$L);
+		return $url;
 	}
 
 	function languageDetection($source){
@@ -162,19 +133,13 @@ class tx_odsredirects {
 		if($id){
 			// http://wissen.netzhaut.de/typo3/extensionentwicklung/typolink-realurl-in-scheduler-tasks/
 			\TYPO3\CMS\Frontend\Utility\EidUtility::initTCA();
-			$GLOBALS['TSFE'] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController',  $GLOBALS['TYPO3_CONF_VARS'], $id, 0);
+			$GLOBALS['TSFE'] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController',  $GLOBALS['TYPO3_CONF_VARS'], 0, 0);
 			$GLOBALS['TSFE']->connectToDB();
 			$GLOBALS['TSFE']->initFEuser();
 			$GLOBALS['TSFE']->determineId();
 			$GLOBALS['TSFE']->initTemplate();
 			$GLOBALS['TSFE']->getConfigArray();
 			$GLOBALS['TSFE']->calculateLinkVars();
-
-			if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
-				$rootline = \TYPO3\CMS\Backend\Utility\BackendUtility::BEgetRootLine($id);
-				$host = \TYPO3\CMS\Backend\Utility\BackendUtility::firstDomainRecord($rootline);
-				$_SERVER['HTTP_HOST'] = $host;
-			}
 
 			$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 			$url = $cObj->getTypoLink_URL($id, $L!==false ? array('L'=>$L) : array());

@@ -1,4 +1,5 @@
 2017-05-11 Robert Heel <typo3@bobosch.de>
+	* Issue #3: Compatibility to TYPO3 8.x
 	* Issue #2: Deactivate update script on realurl 2.x
 
 2016-11-07 Robert Heel <typo3@bobosch.de>

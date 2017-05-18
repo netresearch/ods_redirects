@@ -3,7 +3,7 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "ods_redirects".
  *
- * Auto generated 11-01-2016 02:41
+ * Auto generated 21-04-2017 18:15
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -17,7 +17,7 @@ $EM_CONF[$_EXTKEY] = array (
   'author' => 'Robert Heel',
   'author_email' => 'typo3@bobosch.de',
   'state' => 'stable',
-  'uploadfolder' => 0,
+  'uploadfolder' => false,
   'createDirs' => '',
   'clearCacheOnLoad' => 0,
   'author_company' => '',
@@ -26,7 +26,7 @@ $EM_CONF[$_EXTKEY] = array (
   array (
     'depends' => 
     array (
-      'typo3' => '7.0.0-7.99.99',
+      'typo3' => '7.0.0-8.99.99',
     ),
     'conflicts' => 
     array (
@@ -35,5 +35,6 @@ $EM_CONF[$_EXTKEY] = array (
     array (
     ),
   ),
+  'clearcacheonload' => false,
 );
 
