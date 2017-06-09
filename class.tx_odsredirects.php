@@ -130,7 +130,14 @@ class tx_odsredirects {
 		);
 
 		// Build destination URL
-		if ($redirect['mode'] == 4) $redirect['destination'] = preg_replace('/' . $redirect['url'] . '/i', $redirect['destination'], $currentUrl);
+		if ($redirect['mode'] == 4) {
+			$delimiter = $this->conf['regex_delimiter'] ?: '/';
+			$redirect['destination'] = preg_replace(
+				$delimiter . $redirect['url'] . $delimiter,
+				$redirect['destination'],
+				$currentUrl
+			);
+        }
 		$destination = $this->getLink($redirect['destination'], $_SERVER['HTTP_HOST'] . '/' . $currentUrl);
 
 		// Append trailing url

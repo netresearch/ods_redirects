@@ -3,3 +3,6 @@ lang_detect =
 
 # cat=basic; type=boolean; label=Use sorting as priority instead of mode and creation order
 sorting_is_priority = 0
+
+# cat=basic; type=string; label=Regex delimiter
+regex_delimiter = /
