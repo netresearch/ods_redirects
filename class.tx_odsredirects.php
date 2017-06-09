@@ -41,7 +41,7 @@ class tx_odsredirects {
 		$domainIds = array(0);
 		$domainId = $this->getDomainId();
 		if ($domainId) {
-			$domainIds = $domainId;
+			$domainIds[] = $domainId;
 		}
 
 		return $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
