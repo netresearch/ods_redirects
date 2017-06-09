@@ -16,6 +16,7 @@ CREATE TABLE tx_odsredirects_redirects (
 	has_moved tinyint(3) unsigned DEFAULT '0' NOT NULL,
 	last_referer varchar(255) DEFAULT '' NOT NULL,
 	counter int(10) unsigned DEFAULT '0' NOT NULL,
+	sorting int(10) unsigned DEFAULT '0' NOT NULL,
 	
 	PRIMARY KEY (uid),
 	KEY parent (pid),

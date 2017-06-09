@@ -6,7 +6,7 @@ return array (
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
-		'default_sortby' => 'ORDER BY url',
+        'sortby' => 'sorting',
 		'rootLevel' => -1,
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
